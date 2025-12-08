@@ -22,6 +22,7 @@
                     <li><a href="#overview" title="Overview">ℹ️</a></li>
                     <li><a href="#how-it-works" title="How It Works">🤔</a></li>
                     <li><a href="#installation-guide" title="Installation Guide">🛠️</a></li>
+                    <li><a href="#usage-guide" title="Usage Guide">▶️</a></li>
                     <li><a href="#documentation" title="Documentation">📄</a></li>
                 </ul>
             </nav>
@@ -40,6 +41,7 @@
                 <li><a href="#overview">ℹ️ Overview</a></li>
                 <li><a href="#how-it-works">🤔 How It Works</a></li>
                 <li><a href="#installation-guide">🛠️ Installation Guide</a></li>
+                <li><a href="#usage-guide">▶️ Usage Guide</a></li>
                 <li><a href="#documentation">📄 Documentation</a></li>
             </ul>
         </nav>
@@ -122,6 +124,37 @@
                         <li>Power on both units. The Receiver will create a Wi-Fi Access Point named "IoT_Flood_Monitor_AP".</li>
                         <li>You can connect to this Wi-Fi network to access the web dashboard and monitor the system.</li>
                     </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="usage-guide" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Usage Guide</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Interpreting the Light Signals</h3>
+                        <ul>
+                            <li><strong style="color: #28a745;">GREEN LIGHT:</strong> Normal traffic flow. The road is clear and safe to pass.</li>
+                            <li><strong style="color: #ffc107;">PULSING YELLOW LIGHT:</strong> Low-level flood detected. Proceed with caution as the road is wet.</li>
+                            <li><strong style="color: #dc3545;">SOLID RED LIGHT:</strong> High-level flood detected. The road is impassable. Do not proceed.</li>
+                            <li><strong style="color: #007bff;">BLUE LIGHT:</strong> This is a general flood indicator. It will be ON during both Low and High-level flood states.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Accessing the Web Dashboard</h3>
+                        <ol>
+                            <li>On your phone or computer, scan for Wi-Fi networks.</li>
+                            <li>Connect to the network named <strong>"IoT_Flood_Monitor_AP"</strong>.</li>
+                            <li>Use the password: <strong>"floodmon"</strong> (or the password you configured).</li>
+                            <li>Once connected, open a web browser. You should be automatically redirected to the login page. If not, navigate to the device's IP address (usually 192.168.4.1).</li>
+                            <li>Log in with the configured username and password (default is `admin`/`password`).</li>
+                        </ol>
+                    </div>
+                </div>
+                 <div class="card" style="margin-top: 2rem;">
+                    <h3>Using the Dashboard Controls</h3>
+                    <p>The web dashboard allows for manual control and system resets. You can turn individual LEDs on or off for testing, force the system back into its automatic traffic light cycle, or perform a full reset to the NORMAL state.</p>
                 </div>
             </div>
         </section>
