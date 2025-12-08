@@ -338,10 +338,12 @@ body {
 
 .placeholder-img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    background-color: #222;
-    border: none;
+    height: auto;
+    object-fit: contain;
+    background-color: #f0f8ff; /* A light, off-white background */
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: var(--border-radius);
 }
 .schematic-link {
     cursor: zoom-in;
