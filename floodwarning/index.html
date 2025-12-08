@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Flood Monitor Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="bg"></canvas>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">IoT Flood Monitor</div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#documentation">Documentation</a></li>
+                    <li><a href="#schematic">Schematic</a></li>
+                    <li><a href="#libraries">Libraries</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    <div class="mobile-nav">
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#documentation">Documentation</a></li>
+                <li><a href="#schematic">Schematic</a></li>
+                <li><a href="#libraries">Libraries</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="container">
+                <h1 class="hero-title">IoT Flood Monitoring System</h1>
+                <p class="hero-tagline">A dual-unit ESP32 project for real-time water level detection and remote alerting.</p>
+            </div>
+        </section>
+
+        <section id="overview" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Project Overview</h2>
+                <div class="card">
+                    <p>This project is a comprehensive IoT Flood Monitoring System built with two main components: a remote Sensor Unit and a central Receiver Unit. The system is designed to provide real-time alerts about rising water levels, making it ideal for monitoring basements, sumps, or other flood-prone areas.</p>
+                    <p>The <strong>Sensor Unit</strong>, powered by an ESP32-C3, uses two float switches to detect low and high water levels. When a change in water level is detected, it instantly sends a status update to the receiver using the efficient ESP-NOW communication protocol.</p>
+                    <p>The <strong>Receiver Unit</strong>, built on a standard ESP32, acts as the system's hub. It receives data from the sensor, controls a "traffic light" LED system to indicate the current status (Normal, Low Flood, High Flood), and hosts a password-protected web server. This web server provides a dashboard to view the system status and manually control connected indicators, offering a complete and robust monitoring solution.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="documentation" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Documentation & Process</h2>
+                <div class="card">
+                    <h3>System Assembly & Receiver Hub</h3>
+                    <p>The build process involves wiring the float switches to the Sensor Unit and the LED indicators to the Receiver Unit. Both units are housed in protective casings to shield them from environmental factors. The Receiver Unit is the core of the system, featuring visual alerts and network capabilities. It's configured to run a local Wi-Fi access point, allowing for a direct connection to its web dashboard without needing an external router.</p>
+                </div>
+                <div class="slideshow-container">
+                    <div class="slideshow-track">
+                        <div class="slide"><img src="assets/doc1.jpg" alt="Documentation Image 1" class="placeholder-img"></div>
+                        <div class="slide"><img src="assets/doc2.jpg" alt="Documentation Image 2" class="placeholder-img"></div>
+                        <div class="slide"><img src="assets/doc3.jpg" alt="Documentation Image 3" class="placeholder-img"></div>
+                        <div class="slide"><img src="assets/doc4.jpg" alt="Documentation Image 4" class="placeholder-img"></div>
+                        <div class="slide"><img src="assets/doc5.jpg" alt="Documentation Image 5" class="placeholder-img"></div>
+                        <div class="slide"><img src="assets/doc6.jpg" alt="Documentation Image 6" class="placeholder-img"></div>
+                        <!-- Duplicate for infinite scroll -->
+                        <div class="slide"><img src="assets/doc1.jpg" alt="Documentation Image 1" class="placeholder-img"></div>
+                        <div class="slide"><img src="assets/doc2.jpg" alt="Documentation Image 2" class="placeholder-img"></div>
+                        <div class="slide"><img src="assets/doc3.jpg" alt="Documentation Image 3" class="placeholder-img"></div>
+                        <div class="slide"><img src="assets/doc4.jpg" alt="Documentation Image 4" class="placeholder-img"></div>
+                        <div class="slide"><img src="assets/doc5.jpg" alt="Documentation Image 5" class="placeholder-img"></div>
+                        <div class="slide"><img src="assets/doc6.jpg" alt="Documentation Image 6" class="placeholder-img"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="schematic" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Schematic</h2>
+                <div class="card">
+                    <h3>Circuit Diagram</h3>
+                    <p>The schematic illustrates the connections for both the Sensor and Receiver units. The Sensor Unit uses GPIO pins 4 and 5 for the low and high float switches, configured with internal pull-up resistors. The Receiver Unit uses GPIO pins 18, 21, 22, and 19 to control the red, yellow, green, and blue LEDs, respectively.</p>
+                    <img src="/assets/schema.png" alt="Project Schematic" class="placeholder-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="libraries" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Libraries Used</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>esp_now.h</h3>
+                        <p>Utilized for reliable and fast peer-to-peer communication between the ESP32 sensor and receiver units without the overhead of a traditional Wi-Fi connection.</p>
+                    </div>
+                    <div class="card">
+                        <h3>WiFi.h</h3>
+                        <p>Enables the ESP32 boards to manage Wi-Fi connections. It is used by the Sensor Unit to connect to the receiver's access point and by the Receiver Unit to create its own Soft AP.</p>
+                    </div>
+                    <div class="card">
+                        <h3>WebServer.h</h3>
+                        <p>Used by the Receiver Unit to create a lightweight, secure web server. This server hosts a dashboard for monitoring flood status and provides control endpoints.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>IoT Flood Monitor Project | Designed with GSAP & Modern CSS</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script src="scene.js"></script>
+</body>
+</html>
