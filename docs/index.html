@@ -3,99 +3,27 @@
 <head>
 <title>IT3104-IT402 Internet of Things Project</title>
 <style>
-  :root {
-    --bg: rgba(0, 0, 0, 0.55);
-    --card: rgba(255, 255, 255, 0.92);
-    --accent: #1b73e8;
-    --accent-2: #142b5c;
-    --text: #0f172a;
-    --muted: #4b5563;
-    --radius: 12px;
-    --shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-  }
-
-  * {
-    box-sizing: border-box;
-  }
+    h1 {
+        text-align: center;
+    }
 
   body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-    background-image: linear-gradient(var(--bg), var(--bg)), url('imgs/Internet_02.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center top;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px;
-  }
-
-  .card {
-    width: min(960px, 100%);
-    background: var(--card);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding: 32px 36px;
-    backdrop-filter: blur(6px);
-  }
-
-  h1 {
-    text-align: center;
-    margin: 0 0 10px;
-  }
-
-  .subtitle {
-    text-align: center;
-    margin: 0 0 24px;
-    color: var(--muted);
-  }
-
-  .projects {
-    display: grid;
-    gap: 12px;
-  }
-
-  .project-link {
-    display: block;
-    padding: 14px 16px;
-    border-radius: var(--radius);
-    text-decoration: none;
-    font-weight: 600;
-    color: #ffffff;
-    background: var(--accent-2);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
-  }
-
-  .project-link.primary {
-    background: linear-gradient(135deg, var(--accent), #0f9af0);
-  }
-
-  .project-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 22px rgba(0, 0, 0, 0.16);
-  }
-
-  .project-link:active {
-    transform: translateY(0);
-  }
+    background-image: url('imgs/Internet_02.jpg'); 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-position: center top; 
+    }
+    
 </style>
     
 </head>
 <body>
-    <div class="card">
-        <h1>Development of IoT solutions for Smart City</h1>
-        <p class="subtitle">Select a project to view the team’s page</p>
-        <div class="projects">
-            <a class="project-link primary" href="floodwarning/index.html">Flood Warning System</a>
-            <a class="project-link" href="#">Waste Management System</a>
-            <a class="project-link" href="#">Water Management System</a>
-            <a class="project-link" href="#">Weather Station System</a>
-        </div>
-    </div>
+    
+    <h1>Development of IoT solutions for Smart City</h1>
+    <p><a href="floodwarning/index.html">Flood Warning System</a></p>
+    <p>Waste Management System</p>
+    <p>Water Management System</p>
+    <p>Weather Station System</p>
 
 </body>
 </html>

@@ -72,7 +72,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1rem;
 }
 
 .logo {
@@ -86,26 +85,6 @@ body {
 }
 .logo:hover {
     text-shadow: 0 0 20px rgba(0, 153, 255, 0.7);
-}
-
-.home-link {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 600;
-    padding: 0.6rem 0.9rem;
-    border-radius: 999px;
-    border: 1px solid var(--border-color);
-    background: rgba(255, 255, 255, 0.04);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-}
-.home-link:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-    border-color: rgba(255, 255, 255, 0.4);
-}
-.home-link:active {
-    transform: translateY(0);
 }
 
 /* --- Desktop Navigation --- */
