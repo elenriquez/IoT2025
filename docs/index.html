@@ -1,29 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>IT3104-IT402 Internet of Things Project</title>
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT3104-IT402 Internet of Things Project</title>
+    <style>
+:root {
+    --neon-cyan: #4DEEEA;
+    --deep-navy: #0B1C2E;
+    --network-blue: #007EA7;
+    --glass-bg: rgba(11, 28, 46, 0.65);
+    --text-white: #F0F8FF;
+}
+body {
+    background-image: url('imgs/demographic-census-concept-representation.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: rgba(11, 28, 46, 0.85);
+    background-blend-mode: multiply;
+    color: var(--text-white);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+h1, h2, h3 {
+    text-align: center;
+    color: var(--text-white);
+    text-shadow: 0 0 15px rgba(77, 238, 234, 0.6);
+    margin-bottom: 40px;
+}
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 4rem;
+}
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(77, 238, 234, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    justify-content: space-between;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(77, 238, 234, 0.4);
+    border-color: var(--neon-cyan);
+}
+.card h3 {
+    color: var(--neon-cyan);
+    text-shadow: none;
+    margin-bottom: 20px;
+}
+.card p {
+    color: #cfd8dc;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+.btn {
+    background-color: transparent;
+    border: 2px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    padding: 10px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: auto;
+}
+.btn:hover {
+    background-color: var(--neon-cyan);
+    color: var(--deep-navy);
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8rem;
+    margin-top: 12rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(77, 238, 234, 0.2);
+}
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
     h1 {
-        text-align: center;
+        font-size: 2rem;
     }
-
-  body {
-    background-image: url('imgs/Internet_02.jpg'); 
-    background-repeat: no-repeat; 
-    background-size: cover; 
-    background-position: center top; 
+    .project-grid {
+        gap: 1rem;
     }
-    
-</style>
-    
+}
+    </style>
 </head>
 <body>
-    
-    <h1>Development of IoT solutions for Smart City</h1>
-    <p><a href="floodwarning/index.html">Flood Warning System</a></p>
-    <p><a href="watermngt/index.html">Waste Management System</a></p>
-    <p>Water Management System</p>
-    <p>Weather Station System</p>
+    <div class="container">
+        <header>
+            <h1>IoT Solutions for a Smart City</h1>
+        </header>
 
+        <main>
+            <div class="project-grid">
+                <div class="card">
+                    <h3>Flood Warning System</h3>
+                    <p>A system to monitor water levels and provide early warnings for floods in urban areas.</p>
+                    <a href="floodwarning/index.html" class="btn">View Project</a>
+                </div>
+                <div class="card">
+                    <h3>Waste Management System</h3>
+                    <p>An intelligent system for optimizing waste collection routes and schedules.</p>
+                    <a href="wastemngt/index.html" class="btn">View Project</a>
+                </div>
+                <div class="card">
+                    <h3>Water Management System</h3>
+                    <p>A smart water grid to monitor usage, detect leaks, and ensure efficient water distribution.</p>
+                    <a href="watermngt/index.html" class="btn">View Project</a>
+                </div>
+                <div class="card">
+                    <h3>Weather Station System</h3>
+                    <p>A localized weather station collecting real-time data for micro-climate monitoring.</p>
+                    <a href="weatherstn/index.html" class="btn">View Project</a>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 - IT3104-IT402 Internet of Things Project</p>
+        </footer>
+    </div>
 </body>
 </html>

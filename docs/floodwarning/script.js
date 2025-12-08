@@ -21,7 +21,41 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     const navbar = document.querySelector(".navbar");
+    const navbar = document.querySelector(".navbar");
     const navLinks = document.querySelectorAll('.desktop-nav a');
+    const navLinksArray = Array.from(navLinks);
+    const desktopNav = document.querySelector('.desktop-nav');
+
+    let previousActiveIndex = -1;
+
+    function setActiveLink(targetLink) {
+        const newActiveIndex = navLinksArray.findIndex(link => link === targetLink);
+
+        if (newActiveIndex === -1) return;
+
+        if (previousActiveIndex !== -1 && newActiveIndex !== previousActiveIndex) {
+            const direction = newActiveIndex > previousActiveIndex ? 'right' : 'left';
+            if (direction === 'right') {
+                desktopNav.classList.add('nav-to-right');
+                desktopNav.classList.remove('nav-to-left');
+            } else {
+                desktopNav.classList.add('nav-to-left');
+                desktopNav.classList.remove('nav-to-right');
+            }
+        }
+        
+        navLinks.forEach(l => l.classList.remove('active'));
+        targetLink.classList.add('active');
+        previousActiveIndex = newActiveIndex;
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if (link.getAttribute('href').startsWith('#')) {
+                setActiveLink(link);
+            }
+        });
+    });
 
     // Active Link Highlighting
     const sections = document.querySelectorAll("section[id]");
@@ -32,10 +66,9 @@ document.addEventListener("DOMContentLoaded", function() {
             end: "bottom center-=100",
             onToggle: self => {
                 if (self.isActive) {
-                    navLinks.forEach(link => link.classList.remove('active'));
                     const targetLink = document.querySelector(`.desktop-nav a[href="#${section.id}"]`);
                     if (targetLink) {
-                        targetLink.classList.add('active');
+                        setActiveLink(targetLink);
                     }
                 }
             }

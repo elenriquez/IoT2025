@@ -87,6 +87,17 @@ body {
     text-shadow: 0 0 20px rgba(0, 153, 255, 0.7);
 }
 
+.back-to-home {
+    text-decoration: none;
+    color: var(--subtle-text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 1.25rem;
+}
+.back-to-home:hover {
+    color: var(--primary-color);
+}
+
 /* --- Desktop Navigation --- */
 .desktop-nav ul {
     list-style: none;
@@ -97,6 +108,7 @@ body {
     margin: 0;
 }
 .desktop-nav a {
+    display: inline-block;
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
@@ -113,16 +125,26 @@ body {
     left: 0;
     background: var(--primary-gradient);
     transform: scaleX(0);
-    transform-origin: bottom right;
+    transform-origin: bottom left; /* Default origin */
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
 .desktop-nav a:hover {
     color: var(--primary-color);
 }
-.desktop-nav a.active::after,
-.desktop-nav a:hover::after {
-    transform: scaleX(1);
+
+/* Set transform-origin based on navigation direction */
+.desktop-nav.nav-to-right a::after {
     transform-origin: bottom left;
+}
+
+.desktop-nav.nav-to-left a::after {
+    transform-origin: bottom right;
+}
+
+/* Animate the active link's underline in */
+.desktop-nav a.active::after {
+    transform: scaleX(1);
 }
 
 /* --- Hamburger Menu --- */
