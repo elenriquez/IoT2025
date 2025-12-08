@@ -20,10 +20,9 @@
                 <ul>
                     <li><a href="#hero" title="Home">🏠</a></li>
                     <li><a href="#overview" title="Overview">ℹ️</a></li>
+                    <li><a href="#how-it-works" title="How It Works">🤔</a></li>
+                    <li><a href="#installation-guide" title="Installation Guide">🛠️</a></li>
                     <li><a href="#documentation" title="Documentation">📄</a></li>
-                    <li><a href="#schematic" title="Schematic">💡</a></li>
-                    <li><a href="#libraries" title="Libraries">📚</a></li>
-                    <li><a href="#firmware" title="Firmware">⚙️</a></li>
                 </ul>
             </nav>
             <button class="hamburger" aria-label="Open menu">
@@ -39,10 +38,9 @@
                 <li><a href="../index.html">← Back to Home</a></li>
                 <li><a href="#hero">🏠 Home</a></li>
                 <li><a href="#overview">ℹ️ Overview</a></li>
+                <li><a href="#how-it-works">🤔 How It Works</a></li>
+                <li><a href="#installation-guide">🛠️ Installation Guide</a></li>
                 <li><a href="#documentation">📄 Documentation</a></li>
-                <li><a href="#schematic">💡 Schematic</a></li>
-                <li><a href="#libraries">📚 Libraries</a></li>
-                <li><a href="#firmware">⚙️ Firmware</a></li>
             </ul>
         </nav>
     </div>
@@ -59,9 +57,91 @@
             <div class="container">
                 <h2 class="section-title">Project Overview</h2>
                 <div class="card">
-                    <p>This project is a comprehensive IoT Flood Monitoring System built with two main components: a remote Sensor Unit and a central Receiver Unit. The system is designed to provide real-time alerts about rising water levels, making it ideal for monitoring basements, sumps, or other flood-prone areas.</p>
-                    <p>The <strong>Sensor Unit</strong>, powered by an ESP32-C3, uses two float switches to detect low and high water levels. When a change in water level is detected, it instantly sends a status update to the receiver using the efficient ESP-NOW communication protocol.</p>
-                    <p>The <strong>Receiver Unit</strong>, built on a standard ESP32, acts as the system's hub. It receives data from the sensor, controls a "traffic light" LED system to indicate the current status (Normal, Low Flood, High Flood), and hosts a password-protected web server. This web server provides a dashboard to view the system status and manually control connected indicators, offering a complete and robust monitoring solution.</p>
+                    <p>This project is a real-world IoT solution designed to address the recurring natural flooding at the Pablo Borbon campus. Due to the area's low-lying geography, certain roads become impassable during heavy rain, posing a risk to drivers. This system provides a clear, automated warning sign to indicate whether the road is safe to traverse.</p>
+                    <p>The system uses a remote <strong>Sensor Unit</strong> placed at a critical low point. This unit employs two float switches to detect rising water levels. When a water level threshold is breached, it wirelessly signals a central <strong>Receiver Unit</strong> using the ESP-NOW protocol.</p>
+                    <p>The Receiver Unit controls a highly visible traffic light, giving drivers an immediate and easy-to-understand status of the road ahead. A green light indicates the road is clear, yellow suggests caution as water is rising, and a solid red light warns that the road is impassable. This provides a practical safety measure for a persistent, real-life environmental challenge.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="content-section">
+            <div class="container">
+                <h2 class="section-title">How It Works</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>State 1: Normal Conditions</h3>
+                        <p>When both float switches are dry, the system is in its NORMAL state. The Receiver Unit keeps a standard traffic light cycling (Green -> Yellow -> Red) to regulate normal traffic flow, and the blue flood indicator LED remains off.</p>
+                    </div>
+                    <div class="card">
+                        <h3>State 2: Low-Level Flood</h3>
+                        <p>When the lower float switch is triggered by rising water, the system enters the FLOOD_LOW state. The traffic light turns to a 'breathing' or pulsing yellow, signaling to drivers that the road is wet and they should proceed with caution. The blue indicator LED also turns on.</p>
+                    </div>
+                    <div class="card">
+                        <h3>State 3: High-Level Flood</h3>
+                        <p>When both the lower and upper float switches are triggered, the system enters the FLOOD_HIGH state, indicating the road is impassable. The traffic light turns to a solid red, and the blue indicator LED stays on, clearly warning drivers not to proceed.</p>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>Web Dashboard & Manual Control</h3>
+                    <p>The Receiver Unit also hosts a password-protected Wi-Fi Access Point. By connecting to this network, authorized users can view a web dashboard showing the current flood status in real-time. The dashboard also provides manual control over the LEDs, allowing for system resets or tests.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="installation-guide" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Installation & Setup Guide</h2>
+                <div class="card">
+                    <h3>1. Software Prerequisites</h3>
+                    <ul>
+                        <li>Install the <a href="https://www.arduino.cc/en/software" target="_blank">Arduino IDE</a>.</li>
+                        <li>Add ESP32 board support to your Arduino IDE. You can find instructions <a href="https://docs.espressif.com/projects/arduino-esp32/en/latest/installing.html" target="_blank">here</a>. Make sure to include support for both standard ESP32 and ESP32-C3 boards.</li>
+                    </ul>
+                </div>
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>2. Configure & Flash the Firmware</h3>
+                    <h4>For the Receiver Unit (ESP32):</h4>
+                    <ol>
+                        <li>First, use the `firmware/MAC_Address_Finder.ino` sketch to get the MAC Address of your ESP32 board. Upload the sketch and copy the MAC address from the Serial Monitor.</li>
+                        <li>Open `firmware/Traffic_Receiver.ino` and select your ESP32 board in the Arduino IDE.</li>
+                        <li>Update the `www_user` and `www_pass` variables if you want to change the web dashboard login credentials.</li>
+                        <li>Upload the `Traffic_Receiver.ino` sketch to your ESP32 board.</li>
+                    </ol>
+                    <h4>For the Sensor Unit (ESP32-C3):</h4>
+                    <ol>
+                        <li>Open `firmware/Float_Sensor.ino`.</li>
+                        <li>Paste the Receiver's MAC address you copied earlier into the `broadcastAddress[]` array within this file.</li>
+                        <li>Select your ESP32-C3 board from the board manager.</li>
+                        <li>Upload the sketch to your ESP32-C3 board.</li>
+                    </ol>
+                </div>
+                <div class="card" style="margin-top: 2rem;">
+                    <h3>3. Final Assembly & Power On</h3>
+                    <ul>
+                        <li>Connect the float switches, LEDs, and resistors to the boards as shown in the Schematic diagram.</li>
+                        <li>Power on both units. The Receiver will create a Wi-Fi Access Point named "IoT_Flood_Monitor_AP".</li>
+                        <li>You can connect to this Wi-Fi network to access the web dashboard and monitor the system.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="future-improvements" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Future Improvements</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Cloud Integration & Mobile Alerts</h3>
+                        <p>Connect the Receiver Unit to a home Wi-Fi network to push status updates to an IoT cloud platform. This would enable sending real-time mobile notifications (SMS, Push) to users, ensuring they are alerted to flood conditions even when away from the physical location.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Solar-Powered Sensor Unit</h3>
+                        <p>To increase the autonomy and placement flexibility of the remote Sensor Unit, it could be equipped with a small solar panel and a rechargeable battery pack. This would make it ideal for long-term deployment in outdoor or remote locations without access to mains power.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Advanced Sensing & Data Logging</h3>
+                        <p>Upgrade the binary float switches to an ultrasonic or ToF (Time-of-Flight) distance sensor. This would provide continuous, granular data on the water level, not just discrete high/low points. This data could be logged to an SD card or the cloud for historical analysis of flood patterns.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -81,6 +161,9 @@
                         <div class="slide"><img src="../imgs/flood_doc4.jpg" alt="Documentation Image 4" class="placeholder-img"></div>
                         <div class="slide"><img src="../imgs/flood_doc5.jpg" alt="Documentation Image 5" class="placeholder-img"></div>
                         <div class="slide"><img src="../imgs/flood_doc6.jpg" alt="Documentation Image 6" class="placeholder-img"></div>
+                        <div class="slide"><img src="../imgs/flood_doc7.jpg" alt="Documentation Image 7" class="placeholder-img"></div>
+                        <div class="slide"><img src="../imgs/flood_doc8.jpg" alt="Documentation Image 8" class="placeholder-img"></div>
+                        <div class="slide"><img src="../imgs/flood_doc9.jpg" alt="Documentation Image 9" class="placeholder-img"></div>
                         <!-- Duplicate for infinite scroll -->
                         <div class="slide"><img src="../imgs/flood_doc1.jpg" alt="Documentation Image 1" class="placeholder-img"></div>
                         <div class="slide"><img src="../imgs/flood_doc2.jpg" alt="Documentation Image 2" class="placeholder-img"></div>
@@ -88,6 +171,9 @@
                         <div class="slide"><img src="../imgs/flood_doc4.jpg" alt="Documentation Image 4" class="placeholder-img"></div>
                         <div class="slide"><img src="../imgs/flood_doc5.jpg" alt="Documentation Image 5" class="placeholder-img"></div>
                         <div class="slide"><img src="../imgs/flood_doc6.jpg" alt="Documentation Image 6" class="placeholder-img"></div>
+                        <div class="slide"><img src="../imgs/flood_doc7.jpg" alt="Documentation Image 7" class="placeholder-img"></div>
+                        <div class="slide"><img src="../imgs/flood_doc8.jpg" alt="Documentation Image 8" class="placeholder-img"></div>
+                        <div class="slide"><img src="../imgs/flood_doc9.jpg" alt="Documentation Image 9" class="placeholder-img"></div>
                     </div>
                 </div>
             </div>
@@ -99,7 +185,135 @@
                 <div class="card">
                     <h3>Circuit Diagram</h3>
                     <p>The schematic illustrates the connections for both the Sensor and Receiver units. The Sensor Unit uses GPIO pins 4 and 5 for the low and high float switches, configured with internal pull-up resistors. The Receiver Unit uses GPIO pins 18, 21, 22, and 19 to control the red, yellow, green, and blue LEDs, respectively.</p>
-                    <img src="../imgs/floodMonitoringSchematics.jpg" alt="Project Schematic" class="placeholder-img">
+                                        <img src="../imgs/floodMonitoringSchematics.jpg" alt="Project Schematic" class="placeholder-img">
+                    <img src="../imgs/floodmonitor_ESP32Pinout" alt="ESP32 Pinout Diagram" class="placeholder-img">
+                    <img src="../imgs/floodmonitor_ESP32_C3Pinout.jpeg" alt="ESP32-C3 Pinout Diagram" class="placeholder-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="bom" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Bill of Materials</h2>
+                <div class="card">
+                    <table class="bom-table">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Quantity</th>
+                                <th>Key Specifications</th>
+                                <th>Package Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>ESP32-C3 Dev Module</td>
+                                <td>1</td>
+                                <td>3.3V Logic, WiFi/BT</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>ESP32 Dev Module</td>
+                                <td>1</td>
+                                <td>3.3V Logic, WiFi/BT</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Float Switch</td>
+                                <td>2</td>
+                                <td>Water Level Sensor</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>5mm Red LED</td>
+                                <td>1</td>
+                                <td>~2.0V, 20mA</td>
+                                <td>Through-hole</td>
+                            </tr>
+                            <tr>
+                                <td>5mm Yellow LED</td>
+                                <td>1</td>
+                                <td>~2.1V, 20mA</td>
+                                <td>Through-hole</td>
+                            </tr>
+                            <tr>
+                                <td>5mm Green LED</td>
+                                <td>1</td>
+                                <td>~2.2V, 20mA</td>
+                                <td>Through-hole</td>
+                            </tr>
+                            <tr>
+                                <td>5mm Blue LED</td>
+                                <td>1</td>
+                                <td>~3.2V, 20mA</td>
+                                <td>Through-hole</td>
+                            </tr>
+                            <tr>
+                                <td>220Ω Resistor</td>
+                                <td>4</td>
+                                <td>For current limiting LEDs</td>
+                                <td>Axial</td>
+                            </tr>
+                            <tr>
+                                <td>USB Type-C Cable</td>
+                                <td>2</td>
+                                <td>For Power & Programming</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Waterproof Junction Box</td>
+                                <td>1</td>
+                                <td>To house sensor unit</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>Jumper Wires</td>
+                                <td>Assorted</td>
+                                <td>For connections</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="components-photos" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Component Photos</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>LEDs</h3>
+                        <img src="../imgs/floodmonitor_LEDs.jpeg" alt="Assorted LEDs" class="placeholder-img">
+                    </div>
+                    <div class="card">
+                        <h3>ESP32-C3<br>(Sensor Unit)</h3>
+                        <img src="../imgs/ESP32_C3Picture.jpg" alt="ESP32-C3 Development Board" class="placeholder-img">
+                    </div>
+                    <div class="card">
+                        <h3>ESP32<br>(Receiver Unit)</h3>
+                        <img src="../imgs/floodmonitor_ESP32Picture.jpeg" alt="ESP32 Development Board" class="placeholder-img">
+                    </div>
+                    <div class="card">
+                        <h3>Float<br>Switch</h3>
+                        <img src="../imgs/floodmonitor_horizontalFloatSwitch.jpg" alt="Horizontal Float Switch" class="placeholder-img">
+                    </div>
+                    <div class="card">
+                        <h3>220Ω<br>Resistors</h3>
+                        <img src="../imgs/floodmonitor_220Resistors.webp" alt="220 Ohm Resistors" class="placeholder-img">
+                    </div>
+                    <div class="card">
+                        <h3>USB Type-C Cables</h3>
+                        <img src="../imgs/floodmonitor_2USBType-C.jpg" alt="USB Type-C Cables" class="placeholder-img">
+                    </div>
+                    <div class="card">
+                        <h3>Waterproof Junction Box</h3>
+                        <img src="../imgs/floodmonitor_WaterproofJunctionBox.jpg" alt="Waterproof Junction Box" class="placeholder-img">
+                    </div>
+                    <div class="card">
+                        <h3>Jumper<br>Wires</h3>
+                        <img src="../imgs/floodmonitor_Jumperwires.jpg" alt="Assorted Jumper Wires" class="placeholder-img">
+                    </div>
                 </div>
             </div>
         </section>

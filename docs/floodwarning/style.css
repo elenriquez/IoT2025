@@ -354,6 +354,31 @@ body {
     transform: scale(1.03);
 }
 
+/* --- Bill of Materials Table --- */
+.bom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+.bom-table th, .bom-table td {
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+.bom-table th {
+    background-color: rgba(0, 153, 255, 0.1);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+.bom-table td:first-child {
+    font-weight: 500;
+    color: var(--text-color);
+}
+.bom-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
 /* --- Footer --- */
 .footer {
     text-align: center;
