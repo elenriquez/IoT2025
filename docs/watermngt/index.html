@@ -1,89 +1,552 @@
-
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Water Management System</title>
+        <title>IoT Water Management System</title>
+        <style>
+            /* IoT Theme CSS */
+            :root {
+                --iot-blue: #1a73e8;
+                --iot-blue-dark: #0d47a1;
+                --iot-cyan: #00bcd4;
+                --iot-green: #4caf50;
+                --iot-grey-dark: #263238;
+                --iot-grey: #37474f;
+                --iot-grey-light: #546e7a;
+                --iot-bg: #0a1929;
+                --iot-card-bg: rgba(19, 47, 76, 0.7);
+                --iot-text: #e3f2fd;
+                --iot-text-secondary: #bbdefb;
+            }
+            
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            
+            body {
+                background-color: var(--iot-bg);
+                color: var(--iot-text);
+                line-height: 1.6;
+                padding: 0;
+                background-image: 
+                    radial-gradient(circle at 10% 20%, rgba(26, 115, 232, 0.1) 0%, transparent 20%),
+                    radial-gradient(circle at 90% 80%, rgba(0, 188, 212, 0.1) 0%, transparent 20%);
+                min-height: 100vh;
+            }
+            
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            
+            /* Header Styles */
+            .header {
+                text-align: center;
+                padding: 30px 0;
+                margin-bottom: 30px;
+                border-bottom: 1px solid rgba(26, 115, 232, 0.3);
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, var(--iot-blue), var(--iot-cyan));
+            }
+            
+            .header h1 {
+                font-size: 2.8rem;
+                margin-bottom: 10px;
+                color: white;
+                text-shadow: 0 0 10px rgba(26, 115, 232, 0.5);
+            }
+            
+            .header h1:first-child {
+                color: var(--iot-cyan);
+                font-size: 1.8rem;
+                font-weight: 300;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+            }
+            
+            .team-members {
+                margin-top: 20px;
+                font-size: 0.9rem;
+                color: var(--iot-text-secondary);
+                line-height: 1.8;
+            }
+            
+            /* Card Styles */
+            .card {
+                background: var(--iot-card-bg);
+                border-radius: 10px;
+                padding: 25px;
+                margin-bottom: 30px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+                border-left: 4px solid var(--iot-cyan);
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+            
+            .card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+            }
+            
+            .card h3 {
+                color: var(--iot-cyan);
+                margin-bottom: 15px;
+                font-size: 1.5rem;
+                border-bottom: 1px solid rgba(0, 188, 212, 0.3);
+                padding-bottom: 8px;
+            }
+            
+            .card p {
+                margin-bottom: 15px;
+                color: var(--iot-text-secondary);
+            }
+            
+            /* Image Styles */
+            .image-container {
+                text-align: center;
+                margin: 20px 0;
+                padding: 15px;
+                background: rgba(13, 71, 161, 0.2);
+                border-radius: 8px;
+                border: 1px solid rgba(26, 115, 232, 0.2);
+            }
+            
+            .image-container img {
+                border-radius: 5px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+                max-width: 100%;
+                height: auto;
+                transition: transform 0.3s;
+            }
+            
+            .image-container img:hover {
+                transform: scale(1.02);
+            }
+            
+            /* Materials List */
+            .materials-list {
+                list-style-type: none;
+                padding-left: 0;
+            }
+            
+            .materials-list li {
+                padding: 10px 15px;
+                margin-bottom: 8px;
+                background: rgba(19, 47, 76, 0.5);
+                border-radius: 5px;
+                border-left: 3px solid var(--iot-green);
+                transition: background 0.3s;
+            }
+            
+            .materials-list li:hover {
+                background: rgba(26, 115, 232, 0.2);
+            }
+            
+            .materials-list a {
+                color: var(--iot-cyan);
+                text-decoration: none;
+                font-weight: 500;
+            }
+            
+            .materials-list a:hover {
+                text-decoration: underline;
+                color: white;
+            }
+            
+            /* Table Styles */
+            .table-container {
+                overflow-x: auto;
+                margin: 20px 0;
+            }
+            
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 15px 0;
+                background: rgba(13, 71, 161, 0.2);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+            
+            th, td {
+                padding: 12px 15px;
+                text-align: left;
+                border-bottom: 1px solid rgba(26, 115, 232, 0.3);
+            }
+            
+            th {
+                background-color: rgba(26, 115, 232, 0.3);
+                color: var(--iot-cyan);
+                font-weight: 600;
+            }
+            
+            tr:last-child td {
+                border-bottom: none;
+            }
+            
+            tr:hover {
+                background-color: rgba(26, 115, 232, 0.1);
+            }
+            
+            /* Sensor Highlight */
+            .sensor-highlight {
+                background: rgba(0, 188, 212, 0.1);
+                padding: 15px;
+                border-radius: 5px;
+                margin: 15px 0;
+                border-left: 3px solid var(--iot-cyan);
+            }
+            
+            .sensor-title {
+                color: var(--iot-cyan);
+                font-weight: 600;
+                display: block;
+                margin-bottom: 5px;
+            }
+            
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .container {
+                    padding: 15px;
+                }
+                
+                .header h1 {
+                    font-size: 2rem;
+                }
+                
+                .header h1:first-child {
+                    font-size: 1.3rem;
+                }
+                
+                .card {
+                    padding: 20px;
+                }
+            }
+            
+            /* IoT Animation */
+            @keyframes pulse {
+                0% { opacity: 0.7; }
+                50% { opacity: 1; }
+                100% { opacity: 0.7; }
+            }
+            
+            .key-objectives {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+                margin-top: 25px;
+            }
+
+            .objective {
+                background: rgba(26, 115, 232, 0.1);
+                border-radius: 8px;
+                padding: 20px;
+                border: 1px solid rgba(26, 115, 232, 0.3);
+                transition: transform 0.3s, background 0.3s;
+            }
+
+            .objective:hover {
+                transform: translateY(-5px);
+                background: rgba(26, 115, 232, 0.15);
+                border-color: var(--iot-cyan);
+            }
+
+            .objective-icon {
+                font-size: 2rem;
+                margin-bottom: 10px;
+            }
+
+            .objective h4 {
+                color: var(--iot-cyan);
+                margin-bottom: 10px;
+                font-size: 1.2rem;
+            }
+
+            .objective p {
+                font-size: 0.95rem;
+                color: var(--iot-text-secondary);
+            }
+
+            /* Responsive adjustments for objectives */
+            @media (max-width: 768px) {
+                .key-objectives {
+                    grid-template-columns: 1fr;
+                    gap: 15px;
+                }
+            }            
+            .pulse {
+                animation: pulse 2s infinite;
+            }
+            
+            .status-led {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                margin-right: 8px;
+                background-color: var(--iot-green);
+                box-shadow: 0 0 8px var(--iot-green);
+            }
+
+            .img-container-block {
+                margin: 20px 0;
+            }
+
+            .gallery-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+                margin-top: 15px;
+            }
+
+            .gallery-item {
+                border-radius: 8px;
+                overflow: hidden;
+                transition: transform 0.3s, box-shadow 0.3s;
+                background: rgba(19, 47, 76, 0.3);
+                border: 1px solid rgba(26, 115, 232, 0.2);
+                height: 200px;
+            }
+
+            .gallery-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+                border-color: var(--iot-cyan);
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s;
+            }
+
+            .gallery-item:hover img {
+                transform: scale(1.05);
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .gallery-grid {
+                    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                    gap: 12px;
+                }
+                
+                .gallery-item {
+                    height: 170px;
+                }
+            }
+
+            @media (max-width: 576px) {
+                .gallery-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                
+                .gallery-item {
+                    height: 150px;
+                }
+            }
+            
+            /* Footer */
+            .footer {
+                text-align: center;
+                padding: 20px;
+                margin-top: 30px;
+                border-top: 1px solid rgba(26, 115, 232, 0.3);
+                color: var(--iot-text-secondary);
+                font-size: 0.9rem;
+            }
+
+            
+        </style>
     </head>
     <body>
-        <h1>Development of IoT solutions for Smart City</h1>
-        <h3>Water Management System</h3>
-            <p>Proposed by: Banaag, Kyle M | Sales, Ronel Angelo P. | Fermo, Sarah Jane | Dolor, Paolo Q. | Granados, Shaimaine | Esparrago, Sam Daniel | Seneres, Daniel Bruce | Castillo, Khastin | Esplana, John Rey | Vale, Adriel Joshua </p>
-            <h3>What is an IoT-Based Water Management System?</h3>
-            <p>The IoT-Based Water Management System uses controller, sensors, meters, and other smart devices that are connected through web-based application, analytics tools. and such that can be viewed through mobile, and computer's dashboard. This project created from Arduino and ESP will be helpful when it comes to monitoring the retention level of water and its reusability when pouring it to plants to thrive.</p>
-            <h3>Block Diagram</h3>
-            <p>The subject below shows how will the water management system will operate using IoT block diagram.</p>
-            <img src="assets/Block Diagram.png" style="height:300px; width:auto; max-width:500px;">
-            <h3>Materials Used</h3>
-            <img src="assets/Hardware.png" style="height:200px; width:auto; max-width:500px;">
-            <p>In the makings of the IoT Water Management System, this will be the required materials to build the device.</p>
-                <ul>
+        <div class="container">
+            <div class="header">
+                <h1>IoT - Group 4</h1>
+                <h1>Water Management System</h1>
+                <div class="team-members">
+                    <span class="status-led pulse"></span>
+                    <strong>Proposed by:</strong> Banaag, Kyle M | Sales, Ronel Angelo P. | Fermo, Sarah Jane | Dolor, Paolo Q. | Granados, Shaimaine | Esparrago, Sam Daniel | Seneres, Daniel Bruce | Castillo, Khastin | Esplana, John Rey | Vale, Adriel Joshua
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>What is an IoT-Based Water Management System?</h3>
+                <p>The IoT-Based Water Management System uses controller, sensors, meters, and other smart devices that are connected through web-based application, analytics tools. and such that can be viewed through mobile, and computer's dashboard. This project created from Arduino and ESP will be helpful when it comes to monitoring the retention level of water and its reusability when pouring it to plants to thrive.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Block Diagram</h3>
+                <p>The diagram below shows how our IoT Water Management System operates with enhanced connectivity and reliability features.</p>
+                <div class="image-container">
+                    <img src="assets/Block Diagram.png" alt="Block Diagram of IoT Water Management System with ESP32 connectivity">
+                </div>
+                <div class="key-objectives">
+                    <div class="objective">
+                        <div class="objective-icon">🔗</div>
+                        <h4>Inter-Device Connectivity</h4>
+                        <p>ESPR2 Connection enables mesh networking between multiple ESP32 devices for coordinated water management.</p>
+                    </div>
+                    <div class="objective">
+                        <div class="objective-icon">⚡</div>
+                        <h4>Power Resilience</h4>
+                        <p>Built-in Power Safety ensures uninterrupted operation even when external solar panels are unavailable.</p>
+                    </div>
+                    <div class="objective">
+                        <div class="objective-icon">🛠️</div>
+                        <h4>Easy Implementation</h4>
+                        <p>Modular design makes the system simple to build, configure, and manage for various applications.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Materials Used</h3>
+                <div class="image-container">
+                    <img src="assets/Hardware.png" alt="Hardware components for IoT Water Management System">
+                </div>
+                <p>In the makings of the IoT Water Management System, this will be the required materials to build the device.</p>
+                <ul class="materials-list">
                     <li><a href="https://randomnerdtutorials.com/getting-started-with-esp32/">ESP32 Development Board w Type-C Cable</a></li>
-                    <li><a href="https://circuitdigest.com/microcontroller-projects/interfacing-water-level-sensor-with-arduino">Water Lever Sensor Analog</a></li>
                     <li><a href="https://projecthub.arduino.cc/Isaac100/getting-started-with-the-hc-sr04-ultrasonic-sensor-7cabe1">Ultrasonic Module - HC-SR04T</a></li>
                     <li><a href="https://projecthub.arduino.cc/semsemharaz/interfacing-rgb-led-with-arduino-b59902">LEDs (5mm)</a></li>
                     <li><a href="">2.5-6V 80-120L/H Micro Brushless Magnetic Driving Pump</a></li>
                     <li><a href="">Jumper Wires</a></li>
                     <li><a href="">Printed Circuit Board</a></li>
                     <li><a href="">Resistors - 750 Ohms</a></li>
+                    <li><a href="">One-way Relay</a></li>
                 </ul>
-            <p>From this aforementioned materials, the group will be using only 2 different sensors to read the depth of the retained water as well as its level from the water that has been harvested by the storage.</p>
-            <h3>Circuit Diagram For ESP-Based Water Management System</h3>
-            <img src="assets/Circuit Diagram.png" style="height:500px; width:auto; max-width:900px;">
-            <p>In the image above, this is the researchers' circuit diagram for Water Management System Using ESP32. This diagram can help the individual electronic components found on our activity to turn into a functional Water Management System. As one may see, we are using a few variety of sensors for measuring the parameters of water, this includes:</p>
-            <p><span style="font-weight: bold;">HC-SR04T Sensor</span> - Uses mainly for sound waves. If the time measure for the pulse to travel is short, "The tank is on high load", and if the time it takes for the pulse to go back is long, "The tank is low"</p>
-            <p><span style="font-weight: bold;">Water Level Sensor (Analog)</span> - uses for detecting water levels or presence</p>
-            <p><span style="font-weight: bold;">Driving Pump</span> - to simulate the flow of water back.</p>
-            <h3>Hardware Pinout of IoT Water Management System</h3>
-            <p style="font-weight: bold;">HC-SR04T Sensor and ESP32</p>
-            <table border="1" cellpadding="5" cellspacing="0">
-                <tr>
-                    <td><strong>VCC</strong></td>
-                    <td>5v or 3.3v</td>
-                </tr>
-                <tr>
-                    <td><strong>TRIG</strong></td>
-                    <td>GPIO 23</td>
-                </tr>
-                <tr>
-                    <td><strong>ECHO</strong></td>
-                    <td>GPIO 22</td>
-                </tr>
-                <tr>
-                    <td><strong>GND</strong></td>
-                    <td>GND</td>
-                </tr>
-            </table>
-            <p style="font-weight: bold;">Water Level Sensor and ESP32</p>
-            <table border="1" cellpadding="5" cellspacing="0">
-                <tr>
-                    <td><strong>VCC</strong></td>
-                    <td>5v</td>
-                </tr>
-                <tr>
-                    <td><strong>SIG</strong></td>
-                    <td>Analog Pin (An)</td>
-                </tr>
-                <tr>
-                    <td><strong>GND</strong></td>
-                    <td>GND</td>
-                </tr>
-            </table>
-            <p style="font-weight: bold;">Driving Pump</p>
-            <table border="1" cellpadding="5" cellspacing="0">
-                <tr>
-                    <td><strong>CNTRL</strong></td>
-                    <td>GPIO 18 (MOSFET)</td>
-                </tr>
-                <tr>
-                    <td><strong>Power</strong></td>
-                    <td>External</td>
-                </tr>
-                <tr>
-            </table>
-        <h3>Hardware Setup of Water Management System using ESP32</h3>
-        <p>This picture showcase the complete hardware that was built using the circuit diagram as a blueprint</p>
-        <img src="assets/Blank.png" style="height:200px; width:auto; max-width:500px;">
-        <p>For external power, you can either plug it in via USB port or a 12V DC jack port</p>
-        <h3>Arduino Code for IoT-based Water Management System</h3>
+                <p>From this aforementioned materials, the group will be using only 2 different sensors to read the depth of the retained water as well as its level from the water that has been harvested by the storage.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Circuit Diagram For ESP-Based Water Management System</h3>
+                <div class="image-container">
+                    <img src="assets/Circuit Diagram.png" alt="Circuit Diagram for ESP-Based Water Management System" style="max-width: 700px;">
+                </div>
+                <p>In the image above, this is the researchers' circuit diagram for Water Management System Using ESP32. This diagram can help the individual electronic components found on our activity to turn into a functional Water Management System. As one may see, we are using a few variety of sensors for measuring the parameters of water, this includes:</p>
+                
+                <div class="sensor-highlight">
+                    <span class="sensor-title">HC-SR04T Sensor</span> - Uses mainly for sound waves. If the time measure for the pulse to travel is short, "The tank is on high load", and if the time it takes for the pulse to go back is long, "The tank is low"
+                </div>
+                
+                <div class="sensor-highlight">
+                    <span class="sensor-title">Submersible Magnetic Pump</span> - to simulate the flow of water back.
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Hardware Pinout of IoT Water Management System</h3>
+                <p style="font-weight: bold;">HC-SR04T Sensor and ESP32</p>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <td><strong>VCC</strong></td>
+                            <td>5v or 3.3v</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TRIG</strong></td>
+                            <td>GPIO 23</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ECHO</strong></td>
+                            <td>GPIO 22</td>
+                        </tr>
+                        <tr>
+                            <td><strong>GND</strong></td>
+                            <td>GND</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <p style="font-weight: bold; margin-top: 25px;">Submersible Magnetic Pump</p>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <td><strong>CNTRL</strong></td>
+                            <td>GPIO 18 (MOSFET)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Power</strong></td>
+                            <td>External</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Hardware Setup of Water Management System using ESP32</h3>
+                <p>This picture showcase the complete hardware that was built using the circuit diagram as a blueprint</p>
+                <div class="image-container">
+                    <img src="assets/Blank.png" alt="Hardware Setup of Water Management System">
+                </div>
+                <p>For external power, you can either plug it in via USB port or a 12V DC jack port</p>
+            </div>
+            
+            <div class="card">
+                <h3>Arduino Code for IoT-based Water Management System</h3>
+                <p style="text-align: center; padding: 20px; background: rgba(13, 71, 161, 0.3); border-radius: 5px;">
+                    <span class="status-led pulse"></span>
+                    <strong>Code implementation coming soon...</strong>
+                </p>
+            </div>
+
+                        <div class="card">
+                <h3>Project Documentation Gallery</h3>
+                <div class="img-container-block">
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <img src="assets/doc1.jpg" alt="Initial prototype assembly">
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="assets/doc2.jpeg" alt="Sensor calibration testing">
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="assets/doc3.jpeg" alt="Water level testing">
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="assets/doc4.jpeg" alt="Final system setup">
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="assets/doc5.jpeg" alt="IoT dashboard interface">
+                        </div>
+                        
+                        <div class="gallery-item">
+                            <img src="assets/doc6.jpeg" alt="Team collaboration">
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="assets/doc7.jpg" alt="Team collaboration">
+                        </div>
+
+                        <div class="gallery-item">
+                            <img src="assets/doc8.jpeg" alt="Team collaboration">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>IoT Water Management System | Group 4 | Smart Water Solutions</p>
+                <p>This project utilizes ESP32 and IoT technologies for efficient water monitoring and management.</p>
+            </div>
+        </div>
     </body>
 </html>
