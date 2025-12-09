@@ -300,6 +300,59 @@
                 box-shadow: 0 0 8px var(--iot-green);
             }
 
+        .code-interpretation {
+            background: rgba(13, 71, 161, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid rgba(26, 115, 232, 0.2);
+        }
+
+        .code-interpretation h4 {
+            color: var(--iot-cyan);
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 188, 212, 0.3);
+            padding-bottom: 10px;
+        }
+
+        .code-section {
+            margin-bottom: 25px;
+            background: rgba(19, 47, 76, 0.3);
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid var(--iot-green);
+        }
+
+        .code-section h5 {
+            color: var(--iot-cyan);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .code-section ul {
+            padding-left: 20px;
+        }
+
+        .code-section li {
+            margin-bottom: 8px;
+            color: var(--iot-text-secondary);
+        }
+
+        .code-section ul ul {
+            margin-top: 5px;
+            margin-left: 15px;
+        }
+
+        .code-section li strong {
+            color: var(--iot-text);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .code-section {
+                padding: 12px;
+            }
+        }
+
             .img-container-block {
                 margin: 20px 0;
             }
@@ -430,7 +483,7 @@
                     <li><a href="">Resistors - 750 Ohms</a></li>
                     <li><a href="">One-way Relay</a></li>
                 </ul>
-                <p>From this aforementioned materials, the group will be using only 1 sensors to read the depth of the retained water as well as its level from the water that has been harvested by the storage.</p>
+                <p>From this aforementioned materials, the group will be using only 2 different sensors to read the depth of the retained water as well as its level from the water that has been harvested by the storage.</p>
             </div>
             
             <div class="card">
@@ -492,17 +545,85 @@
                 <h3>Hardware Setup of Water Management System using ESP32</h3>
                 <p>This picture showcase the complete hardware that was built using the circuit diagram as a blueprint</p>
                 <div class="image-container">
-                    <img src="assets/Blank.png" alt="Hardware Setup of Water Management System">
+                    <img src="assets/hardware setup.jpg" alt="Hardware Setup of Water Management System" class="fixed-height-img">
                 </div>
                 <p>For external power, you can either plug it in via USB port or a 12V DC jack port</p>
             </div>
             
             <div class="card">
                 <h3>Arduino Code for IoT-based Water Management System</h3>
-                <p style="text-align: center; padding: 20px; background: rgba(13, 71, 161, 0.3); border-radius: 5px;">
-                    <span class="status-led pulse"></span>
-                    <strong>Code implementation coming soon...</strong>
-                </p>
+                <div class="code-interpretation">
+                    <h4>📋 Code Overview: Smart Water Retention System</h4>
+                    <p>This Arduino code implements an IoT-based water management system with both automatic and manual control capabilities.</p>
+                    
+                    <div class="code-section">
+                        <h5>🔧 Hardware Configuration</h5>
+                        <ul>
+                            <li><strong>RELAY_PIN (25)</strong>: Controls the water pump relay</li>
+                            <li><strong>Ultrasonic Sensor</strong>: TRIG (12) and ECHO (14) for water level detection</li>
+                            <li><strong>Status LEDs</strong>: Green (2), Yellow (4), Red (5) for visual water level indication</li>
+                            <li><strong>BUTTON_PIN (27)</strong>: Manual override button (changed from GPIO 0 for stability)</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="code-section">
+                        <h5>💧 Water Level Management</h5>
+                        <ul>
+                            <li><strong>Tank Height</strong>: 17.0 cm total capacity</li>
+                            <li><strong>Level Thresholds</strong>:
+                                <ul>
+                                    <li>HIGH: ≥80% (Red LED)</li>
+                                    <li>MEDIUM: 30-80% (Yellow LED)</li>
+                                    <li>LOW: <30% (Green LED)</li>
+                                </ul>
+                            </li>
+                            <li><strong>Measurement</strong>: Uses ultrasonic sensor to calculate water depth and percentage</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="code-section">
+                        <h5>🔄 System Operation Modes</h5>
+                        <ul>
+                            <li><strong>Automatic Mode</strong>:
+                                <ul>
+                                    <li>Continuously monitors water level every 2 seconds</li>
+                                    <li>Updates LED indicators based on current water level</li>
+                                    <li>Displays level percentage on serial monitor</li>
+                                </ul>
+                            </li>
+                            <li><strong>Manual Override Mode</strong>:
+                                <ul>
+                                    <li>Button press toggles pump ON/OFF regardless of water level</li>
+                                    <li>Debounce logic prevents false triggers (50ms delay)</li>
+                                    <li>Uses INPUT_PULLDOWN to maintain stable button reading</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="code-section">
+                        <h5>🎯 Key Features & Logic</h5>
+                        <ul>
+                            <li><strong>Relay Control</strong>: Most relays use HIGH=OFF, LOW=ON logic</li>
+                            <li><strong>Sensor Validation</strong>: Checks for valid ultrasonic readings (2-400 cm range)</li>
+                            <li><strong>Error Handling</strong>: Red LED indicates sensor failure</li>
+                            <li><strong>Debouncing</strong>: Prevents multiple triggers from single button press</li>
+                            <li><strong>Serial Monitoring</strong>: Provides real-time system status at 115200 baud</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="code-section">
+                        <h5>🚀 System Behavior</h5>
+                        <ul>
+                            <li>Starts with pump OFF (relay HIGH)</li>
+                            <li>Continuously monitors water level</li>
+                            <li>Button press toggles manual control mode</li>
+                            <li>LEDs provide immediate visual feedback</li>
+                            <li>Serial output shows system state changes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             </div>
 
                         <div class="card">
@@ -540,6 +661,10 @@
                         <div class="gallery-item">
                             <img src="assets/doc8.jpeg" alt="Team collaboration">
                         </div>
+
+                        <div class="gallery-item">
+                            <img src="assets/doc9.jpg" alt="Team collaboration">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -551,5 +676,3 @@
         </div>
     </body>
 </html>
-
-
