@@ -1,1 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    =========================================================
+    SECTION 1: METADATA AND STYLING SETUP (HEAD)
+    =========================================================
+    -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOT-Based System Proposal</title>
 
+    <!-- Load Tailwind CSS from CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Add smooth scrolling for navigation links */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /*
+        ---------------------------------------------------------
+        CUSTOM CSS FOR BUTTON STYLING
+        ---------------------------------------------------------
+        */
+        
+        /* Custom styling for the 'Start' button to give it a 3D/glossy effect */
+        .glossy-button {
+            /* Base Gradient: Creates a dark, glossy appearance */
+            background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%), 
+                              linear-gradient(90deg, #333, #1f2937); /* Dark grey base color */
+            
+            /* Strong Shadow for Depth */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            
+            /* Smooth transition for hover effects */
+            transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        /* Hover state: Makes the button visually 'pop' when interacted with */
+        .glossy-button:hover {
+            transform: translateY(-2px); /* Lifts the button */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.7); /* Stronger shadow */
+        }
+    </style>
+</head>
+<body class="min-h-screen font-sans 
+             bg-gradient-to-b from-white via-blue-50/80 to-blue-400/80 
+             text-gray-900 flex flex-col">
+
+    <!--
+    =========================================================
+    SECTION 2: NAVIGATION (HEADER)
+    =========================================================
+    -->
+    <header class="w-full px-8 py-4 md:px-16 md:py-6 flex justify-between items-center z-20 sticky top-0 bg-white/90 backdrop-blur-sm shadow-sm">
+        <!-- Project/Course Code Logo -->
+        <div class="text-xl md:text-2xl font-extrabold tracking-wider">
+            IT-3104
+        </div>
+        
+        <!-- Navigation Links (Responsive: Hidden on mobile, shown on larger screens) -->
+        <nav class="hidden sm:flex space-x-6 md:space-x-10 text-sm md:text-base font-semibold">
+            <a href="#main-objective" class="hover:text-blue-600 transition duration-150">Objective</a>
+            <a href="#project-overview" class="hover:text-blue-600 transition duration-150">Overview</a>
+            <a href="#docs-images" class="hover:text-blue-600 transition duration-150">Docs</a>
+            <a href="#libraries-section" class="hover:text-blue-600 transition duration-150">Libraries</a>
+             <a href="dash.html" class="hover:text-blue-600 transition duration-150">Dashboard</a>
+        </nav>
+    </header>
+
+    <!--
+    =========================================================
+    SECTION 3: MAIN CONTENT - LANDING PAGE HERO
+    =========================================================
+    -->
+    <main class="flex-grow flex flex-col justify-center items-center text-center p-6 md:p-12 mb-16">
+        <div class="max-w-4xl space-y-8">
+            <!-- Main Title of the Project -->
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                IOT–BASED AUTOMATED DRAINAGE CLOG DETECTION AND DEBRIS MANAGEMENT SYSTEM
+            </h1>
+
+            <!-- Subtitle/Context -->
+            <p class="text-lg md:text-xl font-medium pt-4 tracking-wide">
+                Project proposal: internet of things
+            </p>
+
+            <!-- Start Button -->
+            <div class="pt-8 flex flex-col items-center space-y-4">
+                <a class="glossy-button 
+                                text-white 
+                                font-bold 
+                                py-3 px-12 md:py-4 md:px-16 
+                                text-lg md:text-xl 
+                                rounded-full 
+                                focus:outline-none focus:ring-4 focus:ring-blue-500/50 
+                                tracking-wider 
+                                uppercase" href="#project-overview">
+                    Start
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!--
+    =========================================================
+    SECTION 4: MAIN OBJECTIVE (NEW CONTENT)
+    =========================================================
+    -->
+    <section id="main-objective" class="w-full bg-blue-50 py-12 px-6 md:px-16 lg:px-24">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-extrabold mb-6 text-blue-800">
+                Main Project Objective
+            </h2>
+            <p class="text-xl leading-relaxed text-gray-700">
+                The main objective is to create an IoT-based Automated Drainage Clog Detection and Debris Management System powered by solar energy that helps to reduce flooding in the city. The system automatically detects and removes debris in drainage canals to keep water flowing smoothly without the need for people to clean it often. This project aims to make drainage maintenance smarter, more efficient, and eco-friendly for future smart cities.
+            </p>
+        </div>
+    </section>
+
+    <!--
+    =========================================================
+    SECTION 5: COMPONENT OVERVIEW
+    =========================================================
+    -->
+    <section id="project-overview" class="w-full bg-white py-16 px-6 md:px-16 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-gray-800">
+                Project Components Overview
+            </h2>
+
+            <!-- Responsive Grid for Component Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+                <!-- Component Card Template (x11) -->
+                
+              <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                  <!-- Added onerror fallback for local image paths -->
+                  <img src="img/esp8266.jpeg" alt="ESP8266 Microcontroller" class="w-24 h-24 mx-auto mb-4 rounded-lg object-cover border-4 border-blue-100 p-1" onerror="this.onerror=null; this.src='https://placehold.co/150x150/007bff/fff?text=ESP8266'">
+                  <h3 class="text-lg font-bold text-gray-800 mb-2 text-center">ESP8266</h3>
+                  <p class="text-sm text-gray-600 text-center">The core Wi-Fi enabled microcontroller, responsible for data collection, processing, and communication.</p>
+              </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <!-- Added onerror fallback for local image paths -->
+                    <img src="img/expansion board.jpg" alt="ESP8266 Expansion Board" class="w-24 h-24 mx-auto mb-4 rounded-lg object-cover border-4 border-blue-100 p-1" onerror="this.onerror=null; this.src='https://placehold.co/150x150/007bff/fff?text=Expansion+Board'">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 text-center">ESP8266 Exapansion board</h3>
+                    <p class="text-sm text-gray-600 text-center">Simplifies power distribution and component interfacing, making prototyping easier and safer.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <!-- Added onerror fallback for local image paths -->
+                    <img src="img/ir sensor.jpg" alt="Obstacle IR Sensor" class="w-24 h-24 mx-auto mb-4 rounded-lg object-cover border-4 border-blue-100 p-1" onerror="this.onerror=null; this.src='https://placehold.co/150x150/007bff/fff?text=IR+Sensor'">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 text-center">Obstacle IR Sensor</h3>
+                    <p class="text-sm text-gray-600 text-center">Detects the presence of solid objects or blockages (debris) within the drainage pipe.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <!-- Added onerror fallback for local image paths -->
+                    <img src="img/servo.jpg" alt="Servo Motor MG996R" class="w-24 h-24 mx-auto mb-4 rounded-lg object-cover border-4 border-blue-100 p-1" onerror="this.onerror=null; this.src='https://placehold.co/150x150/007bff/fff?text=Servo+MG996R'">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 text-center">Sevo Motor MG996R</h3>
+                    <p class="text-sm text-gray-600 text-center">A high-torque motor used to control the physical gate mechanism for debris management.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <!-- Added onerror fallback for local image paths -->
+                    <img src="img/Rgb.jpg" alt="Moduled LED RGB" class="w-24 h-24 mx-auto mb-4 rounded-lg object-cover border-4 border-blue-100 p-1" onerror="this.onerror=null; this.src='https://placehold.co/150x150/007bff/fff?text=LED+Module'">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 text-center">Moduled LED RGB</h3>
+                    <p class="text-sm text-gray-600 text-center">Provides quick, color-coded visual feedback (e.g., green, yellow, red) on the system's status.</p>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <!-- Added onerror fallback for local image paths -->
+                    <img src="img/lcd.jpg" alt="LCD 16x2 Built in I2C" class="w-24 h-24 mx-auto mb-4 rounded-lg object-cover border-4 border-blue-100 p-1" onerror="this.onerror=null; this.src='https://placehold.co/150x150/007bff/fff?text=LCD+16x2+I2C'">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 text-center">LCD 16x2 Built in I2C</h3>
+                    <p class="text-sm text-gray-600 text-center">Displays real-time sensor readings and text-based warnings locally.</p>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <!-- Added onerror fallback for local image paths -->
+                    <img src="img/jump.jpg" alt="Jumper Wires" class="w-24 h-24 mx-auto mb-4 rounded-lg object-cover border-4 border-blue-100 p-1" onerror="this.onerror=null; this.src='https://placehold.co/150x150/007bff/fff?text=Jumper+Wires'">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 text-center">JumperWIre m-f f-f</h3>
+                    <p class="text-sm text-gray-600 text-center">Essential flexible conductors for creating temporary connections between the components.</p>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <!-- Added onerror fallback for local image paths -->
+                    <img src="img/pipe.jpg" alt="2inch Water Pipe" class="w-24 h-24 mx-auto mb-4 rounded-lg object-cover border-4 border-blue-100 p-1" onerror="this.onerror=null; this.src='https://placehold.co/150x150/007bff/fff?text=2+inch+Pipe'">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 text-center">2inch Water Pipe</h3>
+                    <p class="text-sm text-gray-600 text-center">Forms the physical model of the drainage system where detection occurs.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <!-- Added onerror fallback for local image paths -->
+                    <img src="img/bucket.jpg" alt="Bucket" class="w-24 h-24 mx-auto mb-4 rounded-lg object-cover border-4 border-blue-100 p-1" onerror="this.onerror=null; this.src='https://placehold.co/150x150/007bff/fff?text=Bucket'">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 text-center">Bucket</h3>
+                    <p class="text-sm text-gray-600 text-center">Serves as a reservoir or collection point for testing water flow and debris capture.</p>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <!-- Added onerror fallback for local image paths -->
+                    <img src="img/box.jpg" alt="Storage Boxes" class="w-24 h-24 mx-auto mb-4 rounded-lg object-cover border-4 border-blue-100 p-1" onerror="this.onerror=null; this.src='https://placehold.co/150x150/007bff/fff?text=Storage+Boxes'">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 text-center">2 storage box</h3>
+                    <p class="text-sm text-gray-600 text-center">Containers for safe and organized housing of electronic parts and mechanisms.</p>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-[1.02]">
+                    <!-- Added onerror fallback for local image paths -->
+                    <img src="img/card.jpg" alt="Cardboard" class="w-24 h-24 mx-auto mb-4 rounded-lg object-cover border-4 border-blue-100 p-1" onerror="this.onerror=null; this.src='https://placehold.co/150x150/007bff/fff?text=Cardboard'">
+                    <h3 class="text-lg font-bold text-gray-800 mb-2 text-center">cardboard</h3>
+                    <p class="text-sm text-gray-600 text-center">Inexpensive material used for initial mounting and rapid construction of the prototype frame.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!--
+    =========================================================
+    SECTION 6: DOCS IMAGES
+    =========================================================
+    -->
+    <section id="docs-images" class="w-full bg-gray-100 py-16 px-6 md:px-16 lg:px-24">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-gray-800">
+                Project Documentation Images
+            </h2>
+
+            <!-- Responsive Grid for 11 Images -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+
+                <!-- Image Card 1 -->
+                <div class="rounded-lg overflow-hidden shadow-lg transition duration-300 hover:scale-[1.03]">
+                    <img src="docimg/img1.jpg" alt="Documentation Image 1" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/300x200/4F46E5/ffffff?text=Doc+Image+1'">
+                </div>
+                <!-- Image Card 2 -->
+                <div class="rounded-lg overflow-hidden shadow-lg transition duration-300 hover:scale-[1.03]">
+                    <img src="docimg/img2.jpg" alt="Documentation Image 2" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/300x200/4F46E5/ffffff?text=Doc+Image+2'">
+                </div>
+                <!-- Image Card 3 -->
+                <div class="rounded-lg overflow-hidden shadow-lg transition duration-300 hover:scale-[1.03]">
+                    <img src="docimg/img3.jpg" alt="Documentation Image 3" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/300x200/4F46E5/ffffff?text=Doc+Image+3'">
+                </div>
+                <!-- Image Card 4 -->
+                <div class="rounded-lg overflow-hidden shadow-lg transition duration-300 hover:scale-[1.03]">
+                    <img src="docimg/img4.jpg" alt="Documentation Image 4" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/300x200/4F46E5/ffffff?text=Doc+Image+4'">
+                </div>
+                <!-- Image Card 5 -->
+                <div class="rounded-lg overflow-hidden shadow-lg transition duration-300 hover:scale-[1.03]">
+                    <img src="docimg/img5.jpg" alt="Documentation Image 5" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/300x200/4F46E5/ffffff?text=Doc+Image+5'">
+                </div>
+                <!-- Image Card 6 -->
+                <div class="rounded-lg overflow-hidden shadow-lg transition duration-300 hover:scale-[1.03]">
+                    <img src="docimg/img6.jpg" alt="Documentation Image 6" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/300x200/4F46E5/ffffff?text=Doc+Image+6'">
+                </div>
+                <!-- Image Card 7 -->
+                <div class="rounded-lg overflow-hidden shadow-lg transition duration-300 hover:scale-[1.03]">
+                    <img src="docimg/img7.jpg" alt="Documentation Image 7" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/300x200/4F46E5/ffffff?text=Doc+Image+7'">
+                </div>
+                <!-- Image Card 8 -->
+                <div class="rounded-lg overflow-hidden shadow-lg transition duration-300 hover:scale-[1.03]">
+                    <img src="docimg/img8.jpg" alt="Documentation Image 8" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/300x200/4F46E5/ffffff?text=Doc+Image+8'">
+                </div>
+                <!-- Image Card 9 -->
+                <div class="rounded-lg overflow-hidden shadow-lg transition duration-300 hover:scale-[1.03]">
+                    <img src="docimg/img9.jpg" alt="Documentation Image 9" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/300x200/4F46E5/ffffff?text=Doc+Image+9'">
+                </div>
+                <!-- Image Card 10 -->
+                <div class="rounded-lg overflow-hidden shadow-lg transition duration-300 hover:scale-[1.03]">
+                    <img src="docimg/img10.jpg" alt="Documentation Image 10" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/300x200/4F46E5/ffffff?text=Doc+Image+10'">
+                </div>
+                <!-- Image Card 11 (Empty in previous version, adding a standard placeholder/fallback) -->
+                <div class="rounded-lg overflow-hidden shadow-lg transition duration-300 hover:scale-[1.03]">
+                    <img src="docimg/img11.jpg" alt="Documentation Image 11" class="w-full h-auto object-cover" onerror="this.onerror=null; this.src='https://placehold.co/300x200/4F46E5/ffffff?text=Doc+Image+11'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--
+    =========================================================
+    SECTION 7: REQUIRED LIBRARIES
+    =========================================================
+    -->
+    <section id="libraries-section" class="w-full bg-white py-16 px-6 md:px-16 lg:px-24">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-center mb-12 text-gray-800">
+                Required Libraries
+            </h2>
+
+            <p class="text-center text-lg text-gray-600 mb-8">
+                These are the necessary Arduino/C++ libraries for compiling and running the project code on the ESP8266 microcontroller.
+            </p>
+
+            <!-- Library Table -->
+            <div class="overflow-x-auto rounded-xl shadow-2xl">
+                <table class="min-w-full divide-y divide-blue-200 border border-blue-100">
+                    <thead class="bg-blue-600 text-white">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider rounded-tl-xl">
+                                Library File
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-sm font-semibold uppercase tracking-wider rounded-tr-xl">
+                                Purpose in Project
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr class="hover:bg-blue-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-base font-mono text-gray-900">
+                                <code class="bg-gray-100 p-1 rounded">ESP8266WiFi.h</code>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-600">
+                                Manages the Wi-Fi connection of the ESP8266 module to the network for Internet of Things (IoT) functionality.
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-blue-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-base font-mono text-gray-900">
+                                <code class="bg-gray-100 p-1 rounded">ESP8266WebServer.h</code>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-600">
+                                Allows the ESP8266 to host a web server, creating a local dashboard or API endpoint for monitoring and control.
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-blue-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-base font-mono text-gray-900">
+                                <code class="bg-gray-100 p-1 rounded">Servo.h</code>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-600">
+                                Provides functions for controlling the position of the Servo Motor (MG996R) to operate the debris management gate.
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-blue-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-base font-mono text-gray-900">
+                                <code class="bg-gray-100 p-1 rounded">Wire.h</code>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-600">
+                                Enables communication using the I2C protocol, which is necessary for interfacing with the LCD 16x2 display module.
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-blue-50">
+                            <td class="px-6 py-4 whitespace-nowrap text-base font-mono text-gray-900">
+                                <code class="bg-gray-100 p-1 rounded">LiquidCrystal_I2C.h</code>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-600">
+                                Specific library for easily writing and controlling text displayed on the I2C-enabled 16x2 LCD screen.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
