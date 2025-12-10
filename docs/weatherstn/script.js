@@ -1,4 +1,3 @@
-
 // 1. Highlight nav link when scrolling (Your original logic, optimized)
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll("nav ul li a");
